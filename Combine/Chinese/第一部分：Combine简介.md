@@ -94,7 +94,7 @@ end
 
 当然，造成这些问题的原因之一是一个可靠的、真实的应用程序很可能使用所有不同类型的异步 API，每个都有自己的接口，如下所示：
 
-![image-20220913022914380](第一部分：Combine 简介.assets/image-20220913022914380.png)
+![image-20220913022914380](./第一部分：Combine简介.assets/image-20220913022914380.png)
 
 Combine 为 Swift 生态系统引入了一种通用的高级语言来设计和编写异步代码。
 
@@ -354,7 +354,7 @@ Combine 不需要任何第三方依赖，通常每节的 Playground 代码中包
 
 在本章中，你将使用导入了 Combine 的 Xcode Playground。 打开项目文件夹中的 starter/playground，你将看到以下内容：
 
-![image-20220914015722757](./第一部分：Combine 简介.assets/image-20220914015722757.png)
+![image-20220914015722757](./第一部分：Combine简介.assets/image-20220914015722757.png)
 
 在项目导航器中打开源代码（View ▸ Navigators ▸ Show Project Navigator ▸ Combine playground页面），然后选择 `SupportCode.swift`。 它包含以下辅助函数 `example(of:)`：
 
@@ -701,7 +701,7 @@ class MyObject {
 
 我们先来解释一下发布者和订阅者之间的相互作用：
 
-![image-20220921013402724](./第一部分：Combine 简介.assets/image-20220921013402724.png)
+![image-20220921013402724](./第一部分：Combine简介.assets/image-20220921013402724.png)
 
 查看这个 UML 图：
 
