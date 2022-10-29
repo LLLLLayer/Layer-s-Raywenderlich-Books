@@ -2,6 +2,14 @@
 
 
 
+**Combine**
+
+> GitBook：https://layers-organization-1.gitbook.io/combine-asynchronous-programming-with-swift/
+>
+> From https://www.raywenderlich.com/books/combine-asynchronous-programming-with-swift
+
+
+
 **RxSwift**
 
 > From https://www.raywenderlich.com/books/rxswift-reactive-programming-with-swift
@@ -44,9 +52,3 @@
 - [【iOS】设计模式(Design Patterns)](https://bytedance.feishu.cn/docx/doxcnTvOzp2YlsYYAZ02b9iYPde) 
 
 > 项目暂时只提供 PDF 版本。
-
-**Combine**
-
-> From https://www.raywenderlich.com/books/combine-asynchronous-programming-with-swift
-
-> 已用 markdowm 格式记录内容。
