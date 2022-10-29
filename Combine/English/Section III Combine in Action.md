@@ -1048,7 +1048,7 @@ In this chapter, you will combine your solid knowledge about operators with some
 
 “Hacker News,” whose API you are going to be using in this chapter, is a social news website focused on computers and entrepreneurship. If you haven‘t already, you can check them out at: https://news.ycombinator.com.
 
-![image-20221010010549053](./Section III Combine in Action.assets/image-20221010010549053.png)
+![image-20221010010549053](./Section_III_Combine_in_Action.assets/image-20221010010549053.png)
 
 In this chapter, you will work in an Xcode playground focusing only on the API client itself.
 
@@ -1062,7 +1062,7 @@ Without further ado, let‘s get started!
 
 Open the included starter playground API.playground in projects/starter and peek inside. You will find some simple starter code included to help you hit the ground running and let you focus on Combine code only:
 
-![image-20221010010650913](./Section III Combine in Action.assets/image-20221010010650913.png)
+![image-20221010010650913](./Section_III_Combine_in_Action.assets/image-20221010010650913.png)
 
 
 
@@ -1147,7 +1147,7 @@ For the current story(id:) method, you will return an empty publisher in case th
 
 You ignore the thrown error and return Empty(). This, as you hopefully still remember, is a publisher that completes immediately without emitting any output values like so:
 
-![image-20221010011957617](./Section III Combine in Action.assets/image-20221010011957617.png)
+![image-20221010011957617](./Section_III_Combine_in_Action.assets/image-20221010011957617.png)
 
 
 
@@ -1202,7 +1202,7 @@ You create a new publisher by calling api.story(id: 1000) and subscribe to it vi
 
 As soon as the playground runs again, it will make a network call to hacker-news.firebaseio.com and print the result in the console:
 
-![image-20221010012426601](./Section III Combine in Action.assets/image-20221010012426601.png)
+![image-20221010012426601](./Section_III_Combine_in_Action.assets/image-20221010012426601.png)
 
 The returned JSON data from the server is a rather simple structure like this:
 
@@ -1276,7 +1276,7 @@ By using story(id:), you create the initialPublisher publisher that fetches the 
 
 Next, you will use reduce(_:_:) from the Swift standard library on the remaining story ids to merge each next story publisher into the initial publisher like so:
 
-![image-20221010013008337](./Section III Combine in Action.assets/image-20221010013008337.png)
+![image-20221010013008337](./Section_III_Combine_in_Action.assets/image-20221010013008337.png)
 
 To reduce the rest of the stories into the initial publisher add:
 
@@ -1455,7 +1455,7 @@ To use mergedStories(ids:) and fetch the story details, you will flatten all the
 
 Merging all the publishers into a single downstream will produce a continuous stream of Story values. The publisher emits these downstream as soon as they are fetched from the network:
 
-![image-20221010014905384](./Section III Combine in Action.assets/image-20221010014905384.png)
+![image-20221010014905384](./Section_III_Combine_in_Action.assets/image-20221010014905384.png)
 
 You could leave the current subscription as is right now but you‘d like to design the API to be easily bindable to a list UI control. This will allow the consumers to simply subscribe stories() and assign the result to an [Story] property in their view controller or SwiftUI view.
 
@@ -1474,7 +1474,7 @@ Append to your current subscription:
 You let scan(...) start emitting with an empty array. Each time a new story is being emitted, you append it to the current aggregated result via stories + [story].
 
 This addition to the subscription code changes its behavior so that you get the — sort of — buffered contents each time you receive a new story from the batch you are working on:
-![image-20221010015111171](./Section III Combine in Action.assets/image-20221010015111171.png)
+![image-20221010015111171](./Section_III_Combine_in_Action.assets/image-20221010015111171.png)
 
 Finally, it can‘t hurt to sort the stories before emitting output. Story conforms to Comparable so you don‘t need to implement any custom sorting. You just need to call sorted() on the result. Append:
 
@@ -1578,7 +1578,7 @@ In case you're not interested in working with UIKit - no worries, this challenge
 
 If you successfully work through the challenge as described, you should see the latest stories “pour in” when you launch the app in the simulator, or on your device:
 
-![image-20221010015936459](./Section III Combine in Action.assets/image-20221010015936459.png)
+![image-20221010015936459](./Section_III_Combine_in_Action.assets/image-20221010015936459.png)
 
 ### Key points
 

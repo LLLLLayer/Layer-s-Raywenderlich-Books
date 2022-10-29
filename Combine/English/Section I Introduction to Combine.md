@@ -98,7 +98,7 @@ And yet, writing good asynchronous programs is possible. It's just more complex 
 
 Certainly, one of the causes for these issues is the fact that a solid, real-life app most likely uses all the different kinds of asynchronous APIs, each with its own interface, like so:
 
-![image-20220912214527970](./Section I Introduction to Combine.assets/image-20220912214527970.png)
+![image-20220912214527970](./Section_I_Introduction_to_Combine.assets/image-20220912214527970.png)
 
 
 
@@ -110,7 +110,7 @@ Finally, last but definitely not least, Apple designed their amazing UI framewor
 
 To give you an idea of how committed Apple is to reactive programming with Combine, here's a simple diagram showing where Combine sits in the system hierarchy:
 
-![image-20220912215456753](./Section I Introduction to Combine.assets/image-20220912215456753.png)
+![image-20220912215456753](./Section_I_Introduction_to_Combine.assets/image-20220912215456753.png)
 
 
 
@@ -178,7 +178,7 @@ A publisher can emit zero or more output values, and if it ever completes, eithe
 
 Here's how a publisher emitting Int values could look like visualized on a timeline:
 
-![image-20220913011934182](./Section I Introduction to Combine.assets/image-20220913011934182.png)
+![image-20220913011934182](./Section_I_Introduction_to_Combine.assets/image-20220913011934182.png)
 
 
 
@@ -208,7 +208,7 @@ Because these methods, called "operators", are highly decoupled and composable, 
 
 It's fascinating how operators fit tightly together like puzzle pieces. They cannot be mistakenly put in the wrong order or fit together if one's output doesn't match the next one's input type:
 
-![image-20220913013329272](./Section I Introduction to Combine.assets/image-20220913013329272.png)
+![image-20220913013329272](./Section_I_Introduction_to_Combine.assets/image-20220913013329272.png)
 
 
 
@@ -226,7 +226,7 @@ Finally, you arrive at the end of the subscription chain: Every subscription end
 
 Currently, Combine provides two built-in subscribers, which make working with data streams straightforward:
 
-![image-20220913013859537](./Section I Introduction to Combine.assets/image-20220913013859537.png)
+![image-20220913013859537](./Section_I_Introduction_to_Combine.assets/image-20220913013859537.png)
 
 
 
@@ -251,7 +251,7 @@ Subscriptions are a wonderful concept in that they allow you to declare a chain 
 
 If you go full-Combine, you could describe your whole app's logic via subscriptions and once done, just let the system run everything without the need to push or pull data or call back this or that other object:
 
-![image-20220913014824423](./Section I Introduction to Combine.assets/image-20220913014824423.png)
+![image-20220913014824423](./Section_I_Introduction_to_Combine.assets/image-20220913014824423.png)
 
 
 
@@ -309,7 +309,7 @@ It's a slightly different story if you're adopting Combine and SwiftUI at the sa
 
 View controllers just don't have any chance against a Combine/SwiftUI team. When you use reactive programming all the way from your data model to your views, you don't need to have a special controller just to control your views:
 
-![image-20220913021248555](./Section I Introduction to Combine.assets/image-20220913021248555.png)
+![image-20220913021248555](./Section_I_Introduction_to_Combine.assets/image-20220913021248555.png)
 
 
 
@@ -325,13 +325,13 @@ Unlike other system frameworks, you can work pretty successfully with Combine in
 
 Learning in an Xcode playground makes it easy to move forward and quickly experiment as you progress through a given chapter and to see instantly the results in Xcode's Console:
 
-![image-20220913021623285](./Section I Introduction to Combine.assets/image-20220913021623285.png)
+![image-20220913021623285](./Section_I_Introduction_to_Combine.assets/image-20220913021623285.png)
 
 Combine does not require any third-party dependencies, so usually, a few simple helper files included with the starter playground code for each chapter will suffice to get you running. If Xcode ever gets stuck while you experiment in the playground, a quick restart will likely solve the issue.
 
 Once you move to more complex concepts than playing with a single operator, you'll alternate between working in playgrounds and real Xcode projects like the Hacker News app, which is a newsreader that displays news in real time:
 
-![image-20220913021911158](./Section I Introduction to Combine.assets/image-20220913021911158.png)
+![image-20220913021911158](./Section_I_Introduction_to_Combine.assets/image-20220913021911158.png)
 
 
 
@@ -375,7 +375,7 @@ In this chapter, you’ll experiment with various ways to create publishers and 
 
 For this chapter, you’ll use an Xcode playground with Combine imported. Open Starter.playground in the projects folder and you’ll see the following:
 
-![image-20220914015726170](./Section I Introduction to Combine.assets/image-20220914015726170.png)
+![image-20220914015726170](./Section_I_Introduction_to_Combine.assets/image-20220914015726170.png)
 
 
 
@@ -730,7 +730,7 @@ These are good examples to start with, but there’s a lot more going on behind 
 
 They say a picture is worth a thousand words, so let’s kick things off with one to explain the interplay between publishers and subscribers:
 
-![image-20220921013405281](./Section I Introduction to Combine.assets/image-20220921013405281.png)
+![image-20220921013405281](./Section_I_Introduction_to_Combine.assets/image-20220921013405281.png)
 
 Walking through this UML diagram:
 

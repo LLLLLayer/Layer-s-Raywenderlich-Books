@@ -49,11 +49,11 @@ VStack {
 
 This code will create two separate views on iOS. The Type picker control will be a button taking the user to a separate screen with a list of options like so:
 
-![image-20221015154837498](./Section IV Advanced Combine.assets/image-20221015154837498.png)
+![image-20221015154837498](./Section_IV_Advanced_Combine.assets/image-20221015154837498.png)
 
 On macOS, however, SwiftUI will consider the abundant UI screen space on the mac and create a single form with a drop-down menu instead:
 
-![image-20221015154853363](./Section IV Advanced Combine.assets/image-20221015154853363.png)
+![image-20221015154853363](./Section_IV_Advanced_Combine.assets/image-20221015154853363.png)
 
 Finally, in SwiftUI, the user interface rendered on screen is a function of your state. You maintain a single copy of this state referred to as the "source of truth", and the UI is being derived dynamically from that state. Lucky for you, a Combine publisher can easily be plugged as a data source to SwiftUI views.
 
@@ -69,7 +69,7 @@ Any time you change your data model, SwiftUI asks each of your views for their c
 
 In effect, SwiftUI makes UI "snapshots" triggered by any changes of your data model like so:
 
-![image-20221015155029338](./Section IV Advanced Combine.assets/image-20221015155029338.png)
+![image-20221015155029338](./Section_IV_Advanced_Combine.assets/image-20221015155029338.png)
 
 In this chapter, you will work through a number of tasks that cover both interoperations between Combine and SwiftUI along with some of the SwiftUI basics.
 
@@ -85,7 +85,7 @@ Believe it or not, a big part of what makes all of the above roll is a shift in 
 
 Let's look at an example of what that means. When working with UIKit/AppKit you'd, in broad strokes, have your code separated between a data model, some kind of controller and a view:
 
-![image-20221015155350290](./Section IV Advanced Combine.assets/image-20221015155350290.png)
+![image-20221015155350290](./Section_IV_Advanced_Combine.assets/image-20221015155350290.png)
 
 Those three types can have several similar features. They include data storage, support mutability, can be reference types and more.
 
@@ -93,7 +93,7 @@ Let's say you want to display the current weather on-screen. For this example, l
 
 Now, you have two copies of the value you work with. One in your model type and the other stored in the UILabel, just for the purpose of displaying it on-screen:
 
-![image-20221015155513910](./Section IV Advanced Combine.assets/image-20221015155513910.png)
+![image-20221015155513910](./Section_IV_Advanced_Combine.assets/image-20221015155513910.png)
 
 There is no connection or binding between text and conditions. You simply need to copy the String value everywhere you need it.
 
@@ -138,7 +138,7 @@ The project also includes some folders where you will find the following:
 
 The completed project will display a list of Hacker News stories and allow the user to manage a keyword filter:
 
-![image-20221015160406333](./Section IV Advanced Combine.assets/image-20221015160406333.png)
+![image-20221015160406333](./Section_IV_Advanced_Combine.assets/image-20221015160406333.png)
 
 
 
@@ -148,7 +148,7 @@ The completed project will display a list of Hacker News stories and allow the u
 
 Build and run the starter project and you will see an empty table on screen and a single bar button titled "Settings":
 
-![image-20221015160512762](./Section IV Advanced Combine.assets/image-20221015160512762.png)
+![image-20221015160512762](./Section_IV_Advanced_Combine.assets/image-20221015160512762.png)
 
 This is where you start. To get a taste of how interacting with the UI via changes to your data works, you'll make the Settings button present SettingsView when tapped.
 
@@ -164,7 +164,7 @@ self.presentingSettingsSheet = true
 
 As soon as you add this line, you will see the following error:
 
-![image-20221015160708092](./Section IV Advanced Combine.assets/image-20221015160708092.png)
+![image-20221015160708092](./Section_IV_Advanced_Combine.assets/image-20221015160708092.png)
 
 And indeed self is immutable because the view's body is a dynamic property and, therefore, cannot mutate ReaderView.
 
@@ -200,7 +200,7 @@ The sheet(isPresented:content:) modifier takes a Bool publisher and a view to re
 
 Build and run the project. Tap Settings and your new presentation will display the target view:
 
-![image-20221015161204969](./Section IV Advanced Combine.assets/image-20221015161204969.png)
+![image-20221015161204969](./Section_IV_Advanced_Combine.assets/image-20221015161204969.png)
 
 
 
@@ -342,7 +342,7 @@ The @ObservedObject wrapper does the following:
 
 By adding @ObservedObject, you've made model dynamic. This means it'll get all updates while your view model fetches stories from the Hacker News server. In fact, run the app right now and you will see the view refreshes itself as the model fetches stories:
 
-![image-20221015163911423](./Section IV Advanced Combine.assets/image-20221015163911423.png)
+![image-20221015163911423](./Section_IV_Advanced_Combine.assets/image-20221015163911423.png)
 
 
 
@@ -370,7 +370,7 @@ To test this, open Network/API.swift and modify the baseURL property to an inval
 
 Run the app again and you will see the error alert show up as soon as the request to the stories endpoint fails:
 
-![image-20221015165118904](./Section IV Advanced Combine.assets/image-20221015165118904.png)
+![image-20221015165118904](./Section_IV_Advanced_Combine.assets/image-20221015165118904.png)
 
 Before moving on and working through the next section, take a moment to revert your changes to baseURL so your app once again connects to the server successfully.
 
@@ -382,7 +382,7 @@ Sometimes you don't want to go down the ObservableObject/ObservedObject route, b
 
 If you run the app right now, you will see that each of the stories has a relative time included alongside the name of the story author:
 
-![image-20221015165233415](./Section IV Advanced Combine.assets/image-20221015165233415.png)
+![image-20221015165233415](./Section_IV_Advanced_Combine.assets/image-20221015165233415.png)
 
 The relative time there is useful to instantly communicate the "freshness" of the story to the user. However, once rendered on-screen, the information becomes stale after a while. If the user has the app open for a long time, "1 minute ago" might be off by quite some time.
 
@@ -438,7 +438,7 @@ Run the app one more time and leave it open. Make a mental note of how long ago 
 
 Wait for at least one minute and you will see the visible rows update their information with the current time. The orange time badge will still show the time when the story was posted but the text below the title will update with the correct "... minutes ago" text:
 
-![image-20221015165737820](./Section IV Advanced Combine.assets/image-20221015165737820.png)
+![image-20221015165737820](./Section_IV_Advanced_Combine.assets/image-20221015165737820.png)
 
 Besides having the publisher a property on your view, you can also inject any publisher from your Combine model into the view via the view's initializer or the environment. Then, it's only a matter of using onReceive(...) in the same way as above.
 
@@ -519,7 +519,7 @@ The complete binding from Settings to the view model and onwards to the view is 
 
 This is extremely handy because, in the next section, you will connect the Settings view to the Settings model and any change the user makes to the keyword list will trigger the whole chain of bindings and subscriptions to ultimately refresh the main app view story list like so:
 
-![image-20221015171433522](./Section IV Advanced Combine.assets/image-20221015171433522.png)
+![image-20221015171433522](./Section_IV_Advanced_Combine.assets/image-20221015171433522.png)
 
 
 
@@ -553,7 +553,7 @@ Now, depending on the current value of colorScheme, the link will be either blue
 
 Try out this new miracle of code by changing the system appearance to dark. In Xcode, open Debug ► View Debugging ► Configure Environment Overrides... or tap the Environment Overrides button at Xcode's bottom toolbar. Then, toggle the switch next to Interface Style on.
 
-![image-20221015171724987](./Section IV Advanced Combine.assets/image-20221015171724987.png)
+![image-20221015171724987](./Section_IV_Advanced_Combine.assets/image-20221015171724987.png)
 
 
 
@@ -678,13 +678,13 @@ settings.keywords.remove(at: index.first!)
 ```
 
 That's really all you need to enable editing in your list! Build and run the app one final time and you'll be able to fully manage the story filter including adding, moving and deleting keywords:
-![image-20221015174403789](./Section IV Advanced Combine.assets/image-20221015174403789.png)
+![image-20221015174403789](./Section_IV_Advanced_Combine.assets/image-20221015174403789.png)
 
 
 
 Additionally, when you navigate back to the story list, you will see that the settings are propagated along with your subscriptions and bindings across the application and the list displays only stories matching your filter. The title will display the number of matching stories as well:
 
-![image-20221015174543736](./Section IV Advanced Combine.assets/image-20221015174543736.png)
+![image-20221015174543736](./Section_IV_Advanced_Combine.assets/image-20221015174543736.png)
 
 
 
@@ -696,7 +696,7 @@ This chapter includes two completely optional SwiftUI exercises that you can cho
 
 In the first challenge, you will insert a list of the filter's keywords in the story list header in ReaderView. Currently, the header always displays "Showing all stories". Change that text to display the list of keywords in case the user has added any, like so:
 
-![image-20221015174625572](./Section IV Advanced Combine.assets/image-20221015174625572.png)
+![image-20221015174625572](./Section_IV_Advanced_Combine.assets/image-20221015174625572.png)
 
 #### Challenge 2: Persisting the filter between app launches
 
@@ -762,7 +762,7 @@ A publisher whose Failure is of type Never indicates that the publisher can neve
 
 While this might seem a tad strange at first, it provides some extremely powerful guarantees about these publishers. A publisher with Never failure type lets you focus on consuming the publisher's values while being absolutely sure the publisher will never fail. It can only complete successfully once it's done.
 
-![image-20221019011945877](./Section IV Advanced Combine.assets/image-20221019011945877.png)
+![image-20221019011945877](./Section_IV_Advanced_Combine.assets/image-20221019011945877.png)
 
 Open the Project Navigator in the starter playground by pressing Command-1, then select the Never playground page.
 
@@ -836,7 +836,7 @@ Now, you can use setFailureType to change the failure type of the publisher to M
 
 To confirm this actually changed the publisher's failure type, start typing .eraseToAnyPublisher(), and the auto-completion will show you the erased publisher type:
 
-![image-20221019013129900](./Section IV Advanced Combine.assets/image-20221019013129900.png)
+![image-20221019013129900](./Section_IV_Advanced_Combine.assets/image-20221019013129900.png)
 
 Delete the .erase... line you started typing before proceeding.
 
@@ -1006,7 +1006,7 @@ Seemingly, everything is working just fine, so what's actually wrong here?
 
 The call to `assign(to:on:)` creates a subscription that strongly retains self. Essentially — self hangs on to the subscription, and the subscription hangs on to self, creating a retain cycle resulting in a memory leak.
 
-![image-20221019015249358](./Section IV Advanced Combine.assets/image-20221019015249358.png)
+![image-20221019015249358](./Section_IV_Advanced_Combine.assets/image-20221019015249358.png)
 
 Fortunately, the good folks at Apple realized how problematic this is and introduced another overload of this operator - assign(to:).
 
@@ -1255,13 +1255,13 @@ Done!
 
 Next, find the switch completion { line and Option-click on completion:
 
-![image-20221023004509026](./Section IV Advanced Combine.assets/image-20221023004509026.png)
+![image-20221023004509026](./Section_IV_Advanced_Combine.assets/image-20221023004509026.png)
 
 Notice that the Completion's failure type is NameError, which is exactly what you want. The setFailureType operator lets you specifically target NameError failures such as failure(.tooShort(let name)).
 
 Next, change map to tryMap. You'll immediately notice the playground no longer compiles. Option-click on completion again:
 
-![image-20221023004626882](./Section IV Advanced Combine.assets/image-20221023004626882.png)
+![image-20221023004626882](./Section_IV_Advanced_Combine.assets/image-20221023004626882.png)
 
 Very interesting! tryMap erased your strictly-typed error and replaced it with a general Swift.Error type. This happens even though you didn't actually throw an error from within tryMap — you simply used it! Why is that?
 
@@ -1621,7 +1621,7 @@ finished
 
 Tap the Show Result button next to the first line in receiveValue and you'll see a beautiful low-quality picture of... well, a combine.
 
-![image-20221023015005746](./Section IV Advanced Combine.assets/image-20221023015005746.png)
+![image-20221023015005746](./Section_IV_Advanced_Combine.assets/image-20221023015005746.png)
 
 Next, change the quality from .low to .high and run the playground again. You'll see the following output:
 
@@ -1710,7 +1710,7 @@ finished
 
 As you can see, this time there are three attempts, the initial one plus two more retries. The method fails for the first two attempts, and then succeeds and returns this gorgeous, high-quality photo of a combine in a field:
 
-![image-20221023015718717](./Section IV Advanced Combine.assets/image-20221023015718717.png)
+![image-20221023015718717](./Section_IV_Advanced_Combine.assets/image-20221023015718717.png)
 
 Awesome! But there's still one final feature you'll improve in this service call. Your product folks asked that you fall back to a low-quality image if fetching a high-quality image fails. If fetching a low-quality image fails as well, you should fall back to a hard-coded image.
 
@@ -1726,7 +1726,7 @@ Then add the following line, immediately after the call to retry:
 
 Run your playground again and take a look at the image result this time around. After four attempts — i.e., the initial plus three retries  — you fall back to a hard-coded image on disk:
 
-![image-20221023015848140](./Section IV Advanced Combine.assets/image-20221023015848140.png)
+![image-20221023015848140](./Section_IV_Advanced_Combine.assets/image-20221023015848140.png)
 
 Also, looking at the console output reveals what you'd expect: There are four failed attempts, followed by the hard-coded fallback image:
 
@@ -1826,7 +1826,7 @@ Remember this important concept: A scheduler is not equal to a thread. You’ll 
 
 Let’s look at the concept of schedulers from an event flow standpoint:
 
-![image-20221023150402604](./Section IV Advanced Combine.assets/image-20221023150402604.png)
+![image-20221023150402604](./Section_IV_Advanced_Combine.assets/image-20221023150402604.png)
 
 What you see in the figure above:
 
@@ -1873,7 +1873,7 @@ Don’t hesitate to take a look back at Chapter 6 if you need to refresh your me
 
 Remember — a publisher is an inanimate entity until you subscribe to it. But what happens when you subscribe to a publisher? Several steps take place:
 
-![image-20221023150834612](./Section IV Advanced Combine.assets/image-20221023150834612.png)
+![image-20221023150834612](./Section_IV_Advanced_Combine.assets/image-20221023150834612.png)
 
 1. Publisher receives the subscriber and creates a Subscription.
 2. Subscriber receives the subscription and requests values from the publisher (dotted lines).
@@ -2079,7 +2079,7 @@ In the above code, you:
 
 Execute the playground page and look at the output after a few seconds:
 
-![image-20221023153715362](./Section IV Advanced Combine.assets/image-20221023153715362.png)
+![image-20221023153715362](./Section_IV_Advanced_Combine.assets/image-20221023153715362.png)
 
 This representation shows each value the source publisher (the timer) emits. On each line, you see the threads the value is going through. Every time you add a recordThread(using:) operator, you see an additional thread number logged on the line.
 
@@ -2093,7 +2093,7 @@ To verify this, you can do a little experiment! Go back to your setupPublisher c
 
 This requests that values the source emits be further made available on the global concurrent queue. Is this going to yield interesting results? Execute the playground to find out:
 
-![image-20221023153918097](./Section IV Advanced Combine.assets/image-20221023153918097.png)
+![image-20221023153918097](./Section_IV_Advanced_Combine.assets/image-20221023153918097.png)
 
 This is completely different! Can you guess why the thread changes all the time? You’ll learn more about this in the coverage of DispatchQueue in this chapter!
 
@@ -2143,7 +2143,7 @@ But what is RunLoop.current? It is the RunLoop associated with the thread that w
 
 Execute the playground to see what happens:
 
-![image-20221023154759254](./Section IV Advanced Combine.assets/image-20221023154759254.png)
+![image-20221023154759254](./Section_IV_Advanced_Combine.assets/image-20221023154759254.png)
 
 As you requested it, the first recordThread shows that each value goes through one of the global concurrent queue’s threads, then continues on the main thread.
 
@@ -2299,7 +2299,7 @@ PlaygroundPage.current.liveView = UIHostingController(rootView: view)
 
 Execute the playground. Easy enough, you see what was intended:
 
-![image-20221023161037445](./Section IV Advanced Combine.assets/image-20221023161037445.png)
+![image-20221023161037445](./Section_IV_Advanced_Combine.assets/image-20221023161037445.png)
 
 1. The timer fires on the main queue and sends Void values through the subject.
 
@@ -2317,7 +2317,7 @@ let sourceQueue = serialQueue
 
 Now, execute the playground again:
 
-![image-20221023161246708](./Section IV Advanced Combine.assets/image-20221023161246708.png)
+![image-20221023161246708](./Section_IV_Advanced_Combine.assets/image-20221023161246708.png)
 
 
 
@@ -2607,7 +2607,7 @@ Subscriptions are the unsung heroes of Combine: While you see publishers everywh
 
 Here are the details of the lifecycle of a subscription:
 
-![image-20221023203027527](./Section IV Advanced Combine.assets/image-20221023203027527.png)
+![image-20221023203027527](./Section_IV_Advanced_Combine.assets/image-20221023203027527.png)
 
 1. A subscriber subscribes to the publisher.
 2. The publisher creates a Subscription then hands it over to the subscriber (calling receive(subscription:)).
@@ -3980,7 +3980,7 @@ You can run unit tests in Xcode in several ways:
 
 Run this test by clicking the diamond next to test_collect(). The project will build and run in the simulator briefly while it executes the test, and then report if it succeeded or failed.
 
-As expected, the test will pass and you’ll see the following:![image-20221026014634006](./Section IV Advanced Combine.assets/image-20221026014634006.png)
+As expected, the test will pass and you’ll see the following:![image-20221026014634006](./Section_IV_Advanced_Combine.assets/image-20221026014634006.png)
 
 The diamond next to the test definition will also turn green and contain a checkmark.
 

@@ -44,7 +44,7 @@ Marble diagrams help visualize how operators work. The top line is the upstream 
 
 The bottom line could also be another operator that receives the output from the upstream publisher, performs its operation, and sends those values downstream.
 
-![image-20220926014453579](./Section II Operator.assets/image-20220926014453579.png)
+![image-20220926014453579](./Section_II_Operator.assets/image-20220926014453579.png)
 
 This marble diagram depicts how collect buffers a stream of individual values until the upstream publisher completes. It then emits that array downstream.
 
@@ -130,7 +130,7 @@ In addition to collecting values, you’ll often want to transform those values 
 
 The first you’ll learn about is map, which works just like Swift’s standard map, except that it operates on values emitted from a publisher. In the marble diagram, map takes a closure that multiplies each value by 2.
 
-![image-20220926020723935](./Section II Operator.assets/image-20220926020723935.png)
+![image-20220926020723935](./Section_II_Operator.assets/image-20220926020723935.png)
 
 Notice how, unlike collect, this operator re-publishes values as soon as they are published by the upstream.
 
@@ -357,7 +357,7 @@ Recall the definition from earlier: flatMap flattens the output from all receive
 
 To understand how to manage this, take a look at this marble diagram of flatMap:
 
-![image-20220927014007755](./Section II Operator.assets/image-20220927014007755.png)
+![image-20220927014007755](./Section_II_Operator.assets/image-20220927014007755.png)
 
 In the diagram, flatMap receives three publishers: P1, P2, and P3. Each of these publishers has a value property that is also a publisher. flatMap emits the value publishers’ values from P1 and P2, but ignores P3 because maxPublishers is set to 2. You’ll get more practice working with flatMap and its maxPublishers parameter in Chapter 19, "Testing."
 
@@ -373,7 +373,7 @@ Earlier in the map example, you worked with Foundation’s Formatter.string(for:
 
 As depicted in the following marble diagram, replaceNil will receive optional values and replace nils with the value you specify:
 
-![image-20220927014631529](./Section II Operator.assets/image-20220927014631529.png)
+![image-20220927014631529](./Section_II_Operator.assets/image-20220927014631529.png)
 
 Add this new example to your playground:
 
@@ -419,7 +419,7 @@ You can use the replaceEmpty(with:) operator to replace — or really, insert �
 
 In the following marble diagram, the publisher completes without emitting anything, and at that point the replaceEmpty(with:) operator inserts a value and publishes it downstream:
 
-![image-20220927015747574](./Section II Operator.assets/image-20220927015747574.png)
+![image-20220927015747574](./Section_II_Operator.assets/image-20220927015747574.png)
 
 Add this new example to see it in action:
 
@@ -474,7 +474,7 @@ A great example of this in the transforming category is scan. It will provide th
 
 In the following marble diagram, scan begins by storing a starting value of 0. As it receives each value from the publisher, it adds it to the previously stored value, and then stores and emits the result:
 
-![image-20220928011848705](./Section II Operator.assets/image-20220928011848705.png)
+![image-20220928011848705](./Section_II_Operator.assets/image-20220928011848705.png)
 
 
 
@@ -512,7 +512,7 @@ In this example, you:
 
 This time, you did not print anything in the subscription. Run the playground, and then click the square Show Results button in the right results sidebar.
 
-![image-20220928012358450](./Section II Operator.assets/image-20220928012358450.png)
+![image-20220928012358450](./Section_II_Operator.assets/image-20220928012358450.png)
 
 Talk about a bull run! How’d your stock do?
 
@@ -685,7 +685,7 @@ Many times in the lifetime of your app, you’ll have publishers that emit ident
 
 Combine provides the perfect operator for the task: removeDuplicates:
 
-![image-20220929013437467](./Section II Operator.assets/image-20220929013437467.png)
+![image-20220929013437467](./Section_II_Operator.assets/image-20220929013437467.png)
 
 Notice how you don’t have to provide any arguments to this operator. removeDuplicates automatically works for any values conforming to Equatable, including String.
 
@@ -738,7 +738,7 @@ Quite often, you’ll find yourself dealing with a publisher emitting Optional v
 
 If your spidey sense is tingling, thinking of a very well-known method on Sequence from the Swift standard library called compactMap that does that job, good news – there’s also an operator with the same name!
 
-![image-20220929014232942](./Section II Operator.assets/image-20220929014232942.png)
+![image-20220929014232942](./Section_II_Operator.assets/image-20220929014232942.png)
 
 
 
@@ -781,7 +781,7 @@ Run the above example in your playground and you should see output similar to th
 
 All right, why don’t you take a quick break from all these values... who cares about those, right? Sometimes, all you want to know is that the publisher has finished emitting values, disregarding the actual values. When such a scenario occurs, you can use the ignoreOutput operator:
 
-![image-20220929014618266](./Section II Operator.assets/image-20220929014618266.png)
+![image-20220929014618266](./Section_II_Operator.assets/image-20220929014618266.png)
 
 As the diagram above shows, it doesn’t matter which values are emitted or how many of them, as they’re all ignored; you only push the completion event through to the consumer.
 
@@ -824,7 +824,7 @@ In this section, you’ll learn about two operators that also have their origins
 
 Time to check out a few examples, starting with first(where:).
 
-![image-20220929015609625](./Section II Operator.assets/image-20220929015609625.png)
+![image-20220929015609625](./Section_II_Operator.assets/image-20220929015609625.png)
 
 This operator is interesting because it’s lazy, meaning: It only takes as many values as it needs until it finds one matching the predicate you provided. As soon as it finds a match, it cancels the subscription and completes.
 
@@ -892,7 +892,7 @@ As you can see, as soon as first(where:) finds a matching value, it sends a canc
 
 Now, you can move on to the opposite of this operator — last(where:), whose purpose is to find the last value matching a provided predicate.
 
-![image-20220929020153195](./Section II Operator.assets/image-20220929020153195.png)
+![image-20220929020153195](./Section_II_Operator.assets/image-20220929020153195.png)
 
 As opposed to first(where:), this operator is greedy since it must wait for the publisher to complete emitting values to know whether a matching value has been found. For that reason, the upstream must be finite.
 
@@ -989,7 +989,7 @@ Three operators fall into this category, and you’ll start by learning about th
 
 The dropFirst operator takes a count parameter — defaulting to 1 if omitted — and ignores the first count values emitted by the publisher. Only after skipping count values, the publisher will start passing values through.
 
-![image-20220930012619322](./Section II Operator.assets/image-20220930012619322.png)
+![image-20220930012619322](./Section_II_Operator.assets/image-20220930012619322.png)
 
 
 
@@ -1026,7 +1026,7 @@ Simple, right? Often, the most useful operators are!
 
 Moving on to the next operator in the value dropping family – drop(while:). This is another extremely useful variation that takes a predicate closure and ignores any values emitted by the publisher until the first time that predicate is met. As soon as the predicate is met, values begin to flow through the operator:
 
-![image-20220930012922516](./Section II Operator.assets/image-20220930012922516.png)
+![image-20220930012922516](./Section_II_Operator.assets/image-20220930012922516.png)
 
 Add the following example to your playground to see this in action:
 
@@ -1111,7 +1111,7 @@ Imagine a scenario where you have a user tapping a button, but you want to ignor
 
 It skips any values emitted by a publisher until a second publisher starts emitting values, creating a relationship between them:
 
-![image-20220930013511014](./Section II Operator.assets/image-20220930013511014.png)
+![image-20220930013511014](./Section_II_Operator.assets/image-20220930013511014.png)
 
 The top line represents the isReady stream and the second line represents taps by the user passing through drop(untilOutputFrom:), which takes isReady as an argument.
 
@@ -1180,7 +1180,7 @@ Now, it’s time for you to dive into the final set of operators for this chapte
 
 As the opposite of dropFirst, prefix(_:) will take values only up to the provided amount and then complete:
 
-![image-20220930014058534](./Section II Operator.assets/image-20220930014058534.png)
+![image-20220930014058534](./Section_II_Operator.assets/image-20220930014058534.png)
 
 Add the following code to your playground to demonstrate this:
 
@@ -1217,7 +1217,7 @@ Just like first(where:), this operator is lazy, meaning it only takes up as many
 
 Next up is prefix(while:), which takes a predicate closure and lets values from the upstream publisher through as long as the result of that closure is true. As soon as the result is false, the publisher will complete:
 
-![image-20220930014327357](./Section II Operator.assets/image-20220930014327357.png)
+![image-20220930014327357](./Section_II_Operator.assets/image-20220930014327357.png)
 
 Add the following example to your playground to try this:
 
@@ -1255,7 +1255,7 @@ With the first two prefix operators behind us, it’s time for the most complex 
 
 Imagine a scenario where you have a button that the user can only tap twice. As soon as two taps occur, further tap events on the button should be omitted:
 
-![image-20220930014559453](./Section II Operator.assets/image-20220930014559453.png)
+![image-20220930014559453](./Section_II_Operator.assets/image-20220930014559453.png)
 
 Add the final example for this chapter to the end of your playground:
 
@@ -1379,7 +1379,7 @@ In this section, you’ll learn about prepend(Output...), prepend(Sequence) and 
 
 This variation of prepend takes a variadic list of values using the ... syntax. This means it can take any number of values, as long as they’re of the same Output type as the original publisher.
 
-![image-20221002201214147](./Section II Operator.assets/image-20221002201214147.png)
+![image-20221002201214147](./Section_II_Operator.assets/image-20221002201214147.png)
 
 Add the following code to your playground to experiment with the above example:
 
@@ -1526,7 +1526,7 @@ As you can see, three new values are now prepended to the publisher before the p
 
 The two previous operators prepended lists of values to an existing publisher. But what if you have two different publishers and you want to glue their values together? You can use prepend(Publisher) to add values emitted by a second publisher before the original publisher’s values.
 
-![image-20221002202514958](./Section II Operator.assets/image-20221002202514958.png)
+![image-20221002202514958](./Section_II_Operator.assets/image-20221002202514958.png)
 
 Try out the above example by adding the following to your playground:
 
@@ -1644,7 +1644,7 @@ This next set of operators deals with concatenating events emitted by publishers
 
 append(Output...) works similarly to its prepend counterpart: It also takes a variadic list of type Output but then appends its items after the original publisher has completed with a .finished event.
 
-![image-20221002203610788](./Section II Operator.assets/image-20221002203610788.png)
+![image-20221002203610788](./Section_II_Operator.assets/image-20221002203610788.png)
 
 
 
@@ -1794,7 +1794,7 @@ Joking aside, switchToLatest is complex but highly useful. It lets you switch en
 
 You can only use it on publishers that themselves emit publishers.
 
-![image-20221002205113459](./Section II Operator.assets/image-20221002205113459.png)
+![image-20221002205113459](./Section_II_Operator.assets/image-20221002205113459.png)
 
 Add the following code to your playground to experiment with the example you see in the above diagram:
 
@@ -1957,7 +1957,7 @@ Before you reach the end of this chapter, you’ll wrap up with three operators 
 
 This operator interleaves emissions from different publishers of the same type, like so:
 
-![image-20221002210550916](./Section II Operator.assets/image-20221002210550916.png)
+![image-20221002210550916](./Section_II_Operator.assets/image-20221002210550916.png)
 
 To try out this example, add the following code to your playground:
 
@@ -2088,7 +2088,7 @@ This operator works similarly, emitting tuples of paired values in the same inde
 
 This means that if you are zipping two publishers, you’ll get a single tuple emitted every time both publishers emit a new value.
 
-![image-20221002211422167](./Section II Operator.assets/image-20221002211422167.png)
+![image-20221002211422167](./Section_II_Operator.assets/image-20221002211422167.png)
 
 Add the following code to your playground to try this example:
 
@@ -2190,11 +2190,11 @@ Look at Xcode, and you'll see the sidebar control at the top-left part of the wi
 
 1. Make sure the left sidebar button is toggled so you can see the list of Playground pages:
 
-![image-20221004153839158](./Section II Operator.assets/image-20221004153839158.png)
+![image-20221004153839158](./Section_II_Operator.assets/image-20221004153839158.png)
 
 2. Next, look at the top-right side of the window. You'll see the view controls:
 
-![image-20221004153929898](./Section II Operator.assets/image-20221004153929898.png)
+![image-20221004153929898](./Section_II_Operator.assets/image-20221004153929898.png)
 
 
 
@@ -2202,7 +2202,7 @@ Show the editor with Live View. This will display a live view of the sequences y
 
 3. Showing the Debug area is important for most of the examples in this chapter. Toggle the Debug area using the following icon at the bottom-right of the window, or using the keyboard shortcut Command-Shift-Y:
 
-![image-20221004154105050](./Section II Operator.assets/image-20221004154105050.png)
+![image-20221004154105050](./Section_II_Operator.assets/image-20221004154105050.png)
 
 
 
@@ -2210,7 +2210,7 @@ Show the editor with Live View. This will display a live view of the sequences y
 
 From time to time Xcode may “act up” and not run properly your playground. If this happens to you, open the Preferences dialog in Xcode and select the Locations tab. Click the arrow next to the Derived Data location, depicted by the red circled 1 in the screenshot below. It shows the DerivedData folder in the Finder.
 
-![image-20221004154207171](./Section II Operator.assets/image-20221004154207171.png)
+![image-20221004154207171](./Section_II_Operator.assets/image-20221004154207171.png)
 
 
 
@@ -2301,7 +2301,7 @@ In this last piece of code, you connect the source and delayed publishers to the
 
 Once you save these source changes, Xcode will recompile the playground code and... look at the Live View pane! Finally!
 
-![image-20221004160338705](./Section II Operator.assets/image-20221004160338705.png)
+![image-20221004160338705](./Section_II_Operator.assets/image-20221004160338705.png)
 
 You’ll see two timelines. The top timeline shows values the timer emitted. The bottom timeline shows the same values, delayed. The numbers inside the circles reflect the count of values emitted, not their actual content.
 
@@ -2374,7 +2374,7 @@ collectedPublisher.displayEvents(in: collectedTimeline)
 
 You’re done! Now look at the live view for a while:
 
-![image-20221004162945034](./Section II Operator.assets/image-20221004162945034.png)
+![image-20221004162945034](./Section_II_Operator.assets/image-20221004162945034.png)
 
 You see values appear at regular intervals on the Emitted values timeline. Below it, you see that every four seconds the Collected values timeline displays a single value. But what is it?
 
@@ -2390,7 +2390,7 @@ Do you remember your friend flatMap you learned about in Chapter 3, “Transform
 
 Now, look at the effect it has on the timeline:
 
-![image-20221004163104861](./Section II Operator.assets/image-20221004163104861.png)
+![image-20221004163104861](./Section_II_Operator.assets/image-20221004163104861.png)
 
 You can now see that, every four seconds, collect emits an array of values collected during the last time interval.
 
@@ -2438,7 +2438,7 @@ collectedPublisher2.displayEvents(in: collectedTimeline2)
 
 Now, let this timeline run for a while so you can witness the difference:
 
-![image-20221004164511043](./Section II Operator.assets/image-20221004164511043.png)
+![image-20221004164511043](./Section_II_Operator.assets/image-20221004164511043.png)
 
 You can see here that the second timeline is limiting its collection to two values at a time, as required by the collectMaxCount constant. It’s a useful tool to know about!
 
@@ -2553,7 +2553,7 @@ The feed(with:) method takes a data set and sends data to the given subject at p
 
 Now look at the result:
 
-![image-20221006012418049](./Section II Operator.assets/image-20221006012418049.png)
+![image-20221006012418049](./Section_II_Operator.assets/image-20221006012418049.png)
 
 You see the emitted values at the top, there are 11 strings total being pushed to the sourcePublisher. You can see that the user paused between the two words. This is the time where debounce emitted the captured input.
 
@@ -2647,7 +2647,7 @@ subject.feed(with: typingHelloWorld)
 
 Your playground is ready! You can now see what’s happening in the live view:
 
-![image-20221006014412289](./Section II Operator.assets/image-20221006014412289.png)
+![image-20221006014412289](./Section_II_Operator.assets/image-20221006014412289.png)
 
 
 
@@ -2769,7 +2769,7 @@ Your playground page is now complete. Watch it run and do nothing: the timeout w
 
 Now, run it again. This time, keep pressing the button at less-than-five-seconds intervals. The publisher never completes because timeout doesn’t kick in.
 
-![image-20221006015753919](./Section II Operator.assets/image-20221006015753919.png)
+![image-20221006015753919](./Section_II_Operator.assets/image-20221006015753919.png)
 
 Of course, the simple completion of a publisher is not what you want in many cases. Instead, you need the timeout publisher to send a failure so you can accurately take action in this case.
 
@@ -2801,7 +2801,7 @@ Now when you run the playground and don’t press the button for five seconds, y
 
 Now that the time allocated to this operator ran out, let’s move to the last one in this section.
 
-![image-20221006020123375](./Section II Operator.assets/image-20221006020123375.png)
+![image-20221006020123375](./Section_II_Operator.assets/image-20221006020123375.png)
 
 
 
@@ -3069,7 +3069,7 @@ The first section of this chapter consists of operators that locate specific val
 
 The min operator lets you find the minimum value emitted by a publisher. It's greedy, which means it must wait for the publisher to send a .finished completion event. Once the publisher completes, only the minimum value is emitted by the operator:
 
-![image-20221006143834994](./Section II Operator.assets/image-20221006143834994.png)
+![image-20221006143834994](./Section_II_Operator.assets/image-20221006143834994.png)
 
 Add the following example to your playground to try min:
 
@@ -3169,7 +3169,7 @@ Like the previous example, the publisher emits all its Data objects and finishes
 
 As you'd guess, max works exactly like min, except that it finds the maximum value emitted by a publisher:
 
-![image-20221006144602074](./Section II Operator.assets/image-20221006144602074.png)
+![image-20221006144602074](./Section_II_Operator.assets/image-20221006144602074.png)
 
 Add the following code to your playground to try this example:
 
@@ -3220,7 +3220,7 @@ While the min and max operators deal with finding a published value at some unkn
 
 The first operator is similar to Swift's first property on collections, except that it lets the first emitted value through and then completes. It's lazy, meaning it doesn't wait for the upstream publisher to finish, but instead will cancel the subscription when it receives the first value emitted.
 
-![image-20221006145547555](./Section II Operator.assets/image-20221006145547555.png)
+![image-20221006145547555](./Section_II_Operator.assets/image-20221006145547555.png)
 
 Add the above example to your playground:
 
@@ -3352,7 +3352,7 @@ The last two operators in this section don't have counterparts in the Swift stan
 
 You'll start with output(at:), which emits only the value emitted at the specified index:
 
-![image-20221006150445203](./Section II Operator.assets/image-20221006150445203.png)
+![image-20221006150445203](./Section_II_Operator.assets/image-20221006150445203.png)
 
 Add the following code to your playground to try this example:
 
@@ -3445,7 +3445,7 @@ The following operators also deal with the entire set of values emitted by a pub
 
 The count operator will emit a single value - the number of values were emitted by the upstream publisher, once the publisher sends a .finished completion event:
 
-![image-20221006152625143](./Section II Operator.assets/image-20221006152625143.png)
+![image-20221006152625143](./Section_II_Operator.assets/image-20221006152625143.png)
 
 Add the following code to try this example:
 
@@ -3721,7 +3721,7 @@ The reduce operator is a bit different from the rest of the operators covered in
 
 This might sound confusing at first, but you'll get it in a moment. The easiest way to start is with a diagram:
 
-![image-20221006154954287](./Section II Operator.assets/image-20221006154954287.png)
+![image-20221006154954287](./Section_II_Operator.assets/image-20221006154954287.png)
 
 Combine's reduce operator works like its counterparts in the Swift standard library: reduce(_:_) and reduce(into:_:).
 
@@ -3837,7 +3837,7 @@ This project will take you through:
 
 The project is called Collage Neue and it's an iOS app which allows the user to create simple collages out of their photos, like this:
 
-![image-20221006170610240](./Section II Operator.assets/image-20221006170610240.png)
+![image-20221006170610240](./Section_II_Operator.assets/image-20221006170610240.png)
 
 This project will get you some practical experience with Combine before you move on to learning about more operators, and is a nice break from theory-heavy chapters.
 
@@ -3853,7 +3853,7 @@ Without further ado — it's time to get coding!
 
 To get started with Collage Neue, open the starter project provided with this chapter's materials. The app's structure is rather simple — there is a main view to create and preview collages and an additional view where users select photos to add to their in-progress collage:
 
-![image-20221006171322513](./Section II Operator.assets/image-20221006171322513.png)
+![image-20221006171322513](./Section_II_Operator.assets/image-20221006171322513.png)
 
 > Note: In this chapter, you will specifically excercise working with Combine. You'll get to try various ways of binding data but will not focus on working with Combine and SwiftUI specifically; you will look into how to use these two frameworks together in Chapter 15, In Practice: Combine & SwiftUI.
 
@@ -3942,7 +3942,7 @@ You use the latest preview, or an empty UIImage if a preview doens't exist.
 
 Time to test that new subscription! Build and run the app and click the + button few times. You should see a collage preview, featuring one more copy of the same photo each time you click +:
 
-![image-20221006173347679](./Section II Operator.assets/image-20221006173347679.png)
+![image-20221006173347679](./Section_II_Operator.assets/image-20221006173347679.png)
 
 You get the photos collection, convert it to a collage and assign it to an image view in a single subscription!
 
@@ -3987,11 +3987,11 @@ This modifier observes the given publisher and calls updateUI(photosCount:) for 
 
 Build and run the project and you will notice the two buttons below the preview are disabled, which is the correct initial state:
 
-![image-20221006174326622](./Section II Operator.assets/image-20221006174326622.png)
+![image-20221006174326622](./Section_II_Operator.assets/image-20221006174326622.png)
 
 The buttons will keep changing state as you add more photos to the current collage. For example, when you select one or three photos the Save button will be disabled but Clear will be enabled, like so:
 
-![image-20221006174341789](./Section II Operator.assets/image-20221006174341789.png)
+![image-20221006174341789](./Section_II_Operator.assets/image-20221006174341789.png)
 
 
 
@@ -4069,13 +4069,13 @@ isDisplayingPhotoPicker = true
 
 The isDisplayingPhotoPicker state property is already wired to present PhotosView when set to true so you're ready to test!
 
-Run the app and try out the newly added code. Tap on the + button and you will see the system photos access dialogue pop-up on-screen. Since this is your own app it's safe to tap Allow Access to All Photos to allow accessing the complete photo library on your Simulator from the Collage Neue app:![image-20221006202744699](./Section II Operator.assets/image-20221006202744699.png)
+Run the app and try out the newly added code. Tap on the + button and you will see the system photos access dialogue pop-up on-screen. Since this is your own app it's safe to tap Allow Access to All Photos to allow accessing the complete photo library on your Simulator from the Collage Neue app:![image-20221006202744699](./Section_II_Operator.assets/image-20221006202744699.png)
 
 This will reload the collection view with the default photos included with the iOS Simulator, or your own photos if you're testing on your device:
 
-![image-20221006202759427](./Section II Operator.assets/image-20221006202759427.png)
+![image-20221006202759427](./Section_II_Operator.assets/image-20221006202759427.png)
 
-Tap a few of those. They'll flash to indicate they've been added to the collage. Then, tap to go back to the main screen where you will see your new collage in full glory:![image-20221006202841184](./Section II Operator.assets/image-20221006202841184.png)
+Tap a few of those. They'll flash to indicate they've been added to the collage. Then, tap to go back to the main screen where you will see your new collage in full glory:![image-20221006202841184](./Section_II_Operator.assets/image-20221006202841184.png)
 
 There is one loose end to take care of before moving on. If you navigate few times between the photo picker and the main view you will notice that you cannot add any more photos after the very first time.
 
@@ -4220,7 +4220,7 @@ This poses an uneasy question: Should you subscribe multiple times to the same s
 
 Turns out, subscribing to the same publisher might have unwanted side effects. If you think about it, you don't know what the publisher is doing upon subscription, do you? It might be creating new resources, making network requests or other unexpected work.
 
-![image-20221006205000598](./Section II Operator.assets/image-20221006205000598.png)
+![image-20221006205000598](./Section_II_Operator.assets/image-20221006205000598.png)
 
 The correct way to go when creating multiple subscriptions to the same publisher is to share the original publisher using the share() operator. This wraps the publisher in a class and therefore it can safely emit to multiple subscribers without performing its underlying work again.
 
@@ -4232,7 +4232,7 @@ let newPhotos = selectedPhotos.share()
 
 Now, it's safe to create multiple subscriptions to newPhotos without being afraid that the publisher is performing side effects multiple times for each new subscriber:
 
-![image-20221006205159177](./Section II Operator.assets/image-20221006205159177.png)
+![image-20221006205159177](./Section_II_Operator.assets/image-20221006205159177.png)
 
 A caveat to keep in mind is that share() does not re-emit any values from the shared subscription, so you only get values that occur after you subscribe.
 
@@ -4280,13 +4280,13 @@ Finally, don't forget to use the new isAuthorized publisher in PhotosView!
 
 For bonus points, display an error message in case the user doesn't grant access to their photos and navigate back to the main view controller when they tap Close.
 
-![image-20221006210242249](./Section II Operator.assets/image-20221006210242249.png)
+![image-20221006210242249](./Section_II_Operator.assets/image-20221006210242249.png)
 
 To play with different authorization states and test your code, open the Settings app on your Simulator or device and navigate to Privacy/Photos.
 
 Change the authorization status of Collage to either "None" or "All Photos" to test how your code behaves in those states:
 
-![image-20221006210258228](./Section II Operator.assets/image-20221006210258228.png)
+![image-20221006210258228](./Section_II_Operator.assets/image-20221006210258228.png)
 
 
 

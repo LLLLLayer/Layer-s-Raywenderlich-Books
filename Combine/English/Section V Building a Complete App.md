@@ -12,7 +12,7 @@ By introducing Combine and integrating it throughout their frameworks, Apple has
 
 In the last three sections, you acquired some awesome Combine skills. In this final chapter, you’ll use everything that you’ve learned to finish developing an app that lets you fetch Chuck Norris jokes. But wait, there's more! You’ll also see how to use Core Data with Combine to persist and retrieve your favorite jokes.
 
-![image-20221028212527355](./Section V Building a Complete App.assets/image-20221028212527355.png)
+![image-20221028212527355](./Section_V_Building_a_Complete_App.assets/image-20221028212527355.png)
 
 ### Getting started
 
@@ -24,7 +24,7 @@ Note: Like with all projects in this book, you'll work with SwiftUI in this chap
 
 Select the ChuckNorrisJokes project at the top of the Project navigator:
 
-![image-20221028212659698](./Section V Building a Complete App.assets/image-20221028212659698.png)
+![image-20221028212659698](./Section_V_Building_a_Complete_App.assets/image-20221028212659698.png)
 
 The project has three targets:
 
@@ -40,7 +40,7 @@ If Xcode fails to render some of your in-progress code, it will stop updating th
 
 Click the Live Preview button for each preview to get an interactive running version that’s similar to running the app in the simulator.
 
-![image-20221028213411692](./Section V Building a Complete App.assets/image-20221028213411692.png)
+![image-20221028213411692](./Section_V_Building_a_Complete_App.assets/image-20221028213411692.png)
 
 
 
@@ -529,7 +529,7 @@ The Core Data team has been hard at work these past few years. The process of se
 
 The data model has already been created for you. To review it, open Models/ChuckNorrisJokes.xcdatamodeld and select JokeManagedObject in the ENTITIES section. You’ll see the following attributes have been defined, along with a unique constraint on the id attribute:
 
-![image-20221029151052476](./Section V Building a Complete App.assets/image-20221029151052476.png)
+![image-20221029151052476](./Section_V_Building_a_Complete_App.assets/image-20221029151052476.png)
 
 
 
